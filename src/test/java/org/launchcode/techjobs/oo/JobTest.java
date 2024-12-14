@@ -52,7 +52,6 @@ public class JobTest {
 
         String jobString = job.toString();
 
-        // Get the system's line separator
         String newLine = System.lineSeparator();
 
         Assert.assertEquals("The string should start with a new line", newLine, jobString.substring(0, newLine.length()));
