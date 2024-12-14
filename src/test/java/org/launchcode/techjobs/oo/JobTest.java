@@ -45,4 +45,46 @@ public class JobTest {
 
         Assert.assertFalse("Jobs should not be equal because their ids are different",job1.equals(job2));
     }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job job = new Job();
+
+        String jobString = job.toString();
+
+        // Get the system's line separator
+        String newLine = System.lineSeparator();
+
+        Assert.assertEquals("The string should start with a new line", newLine, jobString.substring(0, newLine.length()));
+        Assert.assertEquals("The string should end with a new line", newLine, jobString.substring(jobString.length() - newLine.length()));
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job = new Job("Web Developer", new Employer(""), new Location("StL"), new PositionType(""), new CoreCompetency("Java"));
+
+        String jobString = job.toString();
+
+        Assert.assertTrue(jobString.contains("Name: Web Developer"));
+        Assert.assertTrue(jobString.contains("Employer: Data not available"));
+        Assert.assertTrue(jobString.contains("Location: StL"));
+        Assert.assertTrue(jobString.contains("Position Type: Data not available"));
+        Assert.assertTrue(jobString.contains("Core Competency: Java"));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job job = new Job("Web Developer",
+                new Employer("LaunchCode"),
+                new Location("StL"),
+                new PositionType("Back-end developer"),
+                new CoreCompetency("Java"));
+
+        Assert.assertTrue(job.toString().contains("Web Developer"));
+        Assert.assertTrue(job.toString().contains("LaunchCode"));
+        Assert.assertTrue(job.toString().contains("StL"));
+        Assert.assertTrue(job.toString().contains("Back-end developer"));
+        Assert.assertTrue(job.toString().contains("Java"));
+    }
+
 }

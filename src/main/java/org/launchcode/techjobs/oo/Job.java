@@ -21,13 +21,13 @@ public class Job {
         nextId++;
     }
 
-    public Job(String name,Employer employer,Location location,PositionType positionType,CoreCompetency coreCompentency) {
+    public Job(String name,Employer employer,Location location,PositionType positionType,CoreCompetency coreCompetency) {
         this();
         this.name = name;
         this.employer = employer;
         this.location = location;
         this.positionType = positionType;
-        this.coreCompetency = coreCompentency;
+        this.coreCompetency = coreCompetency;
     }
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
@@ -93,4 +93,30 @@ public class Job {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+       // return System.lineSeparator() + System.lineSeparator();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(System.lineSeparator());
+
+        if (id != 0 && (name == null || name.isEmpty()) && (employer == null) &&
+                (location == null) && (positionType == null) &&
+                (coreCompetency == null)) {
+            sb.append("OOPS! This job does not seem to exist.");
+        } else {
+            sb.append("ID: ").append(id == 0 ? "Data not available" : id).append(System.lineSeparator());
+            sb.append("Name: ").append(name == null || name.isEmpty() ? "Data not available" : name).append(System.lineSeparator());
+            sb.append("Employer: ").append(employer == null || employer.toString().isEmpty() ? "Data not available" : employer).append(System.lineSeparator());
+            sb.append("Location: ").append(location == null || location.toString().isEmpty() ? "Data not available" : location).append(System.lineSeparator());
+            sb.append("Position Type: ").append(positionType == null || positionType.toString().isEmpty() ? "Data not available" : positionType).append(System.lineSeparator());
+            sb.append("Core Competency: ").append(coreCompetency == null || coreCompetency.toString().isEmpty() ? "Data not available" : coreCompetency);
+        }
+
+        sb.append(System.lineSeparator());
+
+        return sb.toString();
+    }
+
 }
